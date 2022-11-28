@@ -23,7 +23,7 @@ char play(int player, int dealer) {
 
 int main() {
 
-    srand(time(0));
+    srand(time(NULL));
 
     int cards[10] = {4}; //keeping track of cards in deck
     cards[10] = 16; //includes jacks, kings, and queens
@@ -45,11 +45,11 @@ int main() {
     }
     
     if (dealerCard1 == 1) {
-        dealerCard1 == 11;
+        dealerCard1 = 11;
         dAce = 1;
     }
     if (dealerCard2 == 1 && dAce != 1) {
-        dealerCard2 == 11;
+        dealerCard2 = 11;
         dAce = 1;
     }
 
@@ -73,7 +73,6 @@ int main() {
         } else if(choice == 's'){
             printf("You stood with %i.\n", playerHand);
             while(dealerHand < 17){
-                srand(time(0));
                 int dCardDraw = (rand() % 10) + 1;
                 if(cards[dCardDraw] > 0){
                     cards[dCardDraw] -= 1;
@@ -100,7 +99,6 @@ int main() {
                 }
             }
         } else if(choice == 'h'){
-            srand(time(0));
             int pCardDrawn = 0;
             while (pCardDrawn == 0){
                 int pCardDraw = (rand() % 10) + 1;
