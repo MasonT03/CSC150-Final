@@ -25,16 +25,9 @@ int main() {
 
     srand(time(NULL));
 
-    int cards[10] = {4}; //keeping track of cards in deck
-    cards[10] = 16; //includes jacks, kings, and queens
     int inGame = 1, startDeal1 = (rand() % 9) + 1, startDeal2 = (rand() % 9) + 1, dAce = 0, pAce = 0;
     int dealerCard1 = (rand() % 9) + 1, dealerCard2 = (rand() % 9) + 1, dealerHand, playerHand;
     
-    cards[startDeal1] -= 1;
-    cards[startDeal2] -= 1;
-    cards[dealerCard1] -= 1;
-    cards[dealerCard2] -= 1;
-
     if(startDeal1 == 1) {
         startDeal1 = 11;
         pAce = 1;
@@ -73,17 +66,14 @@ int main() {
         } else if(choice == 's'){
             printf("You stood with %i.\n", playerHand);
             while(dealerHand < 17){
-                int dCardDraw = (rand() % 10) + 1;
-                if(cards[dCardDraw] > 0){
-                    cards[dCardDraw] -= 1;
-                    if(dAce != 1 && dCardDraw == 1){
-                        dCardDraw = 11;
-                        dAce = 1;
-                    }
+                int dCardDraw = (rand() % 9) + 1;
+                if(dAce != 1 && dCardDraw == 1){
+                    dCardDraw = 11;
+                    dAce = 1;
+                }
 
                     dealerHand += dCardDraw;
-                    printf("The dealer drew a(n) %i, they now have %i. \n", dCardDraw, dealerHand);
-                }            
+                    printf("The dealer drew a(n) %i, they now have %i. \n", dCardDraw, dealerHand);         
             }
 
             if (dealerHand >= 17){
@@ -101,22 +91,19 @@ int main() {
         } else if(choice == 'h'){
             int pCardDrawn = 0;
             while (pCardDrawn == 0){
-                int pCardDraw = (rand() % 10) + 1;
-                if(cards[pCardDraw] > 0){
-                    cards[pCardDraw] -= 1;
-                    if(pAce != 1 && pCardDraw == 1){
-                        pCardDraw == 11;
-                        pAce = 1;
-                    }
-
-                    playerHand += pCardDraw;
-                    printf("You drew a(n) %i, you now have %i\n", pCardDraw, playerHand);
-                    pCardDrawn = 1;
-                    if(playerHand > 21){
-                        printf("You have %i, the dealer has %i, dealer wins.", playerHand, dealerHand);
-                        return 0;
-                    }
+                int pCardDraw = (rand() % 9) + 1;
+                if(pAce != 1 && pCardDraw == 1){
+                    pCardDraw == 11;
+                    pAce = 1;
                 }
+
+                playerHand += pCardDraw;
+                printf("You drew a(n) %i, you now have %i\n", pCardDraw, playerHand);
+                pCardDrawn = 1;
+                if(playerHand > 21){
+                    printf("You have %i, the dealer has %i, dealer wins.", playerHand, dealerHand);                        return 0;
+                }
+                
             }
         }
     }
