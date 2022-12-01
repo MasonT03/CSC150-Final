@@ -65,6 +65,7 @@ int main() {
             inGame = 0;
         } else if(choice == 's'){
             printf("You stood with %i.\n", playerHand);
+            printf("The dealer's second card is a(n) %i, they have %i.\n", dealerCard2, dealerHand);
             while(dealerHand < 17){
                 int dCardDraw = (rand() % 9) + 1;
                 if(dAce != 1 && dCardDraw == 1){
@@ -78,7 +79,7 @@ int main() {
 
             if (dealerHand >= 17){
                 if(playerHand > dealerHand || dealerHand > 21){
-                    printf("You have %i, the dealer had %i, you win!\n", playerHand, dealerHand);
+                    printf("You have %i, the dealer has %i, you win!\n", playerHand, dealerHand);
                     return 0;
                 } else if(playerHand < dealerHand){
                     printf("You have %i, the dealer has %i, dealer wins.\n", playerHand, dealerHand);
