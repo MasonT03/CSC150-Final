@@ -66,16 +66,17 @@ int main() {
         } else if(choice == 's'){
             printf("You stood with %i.\n", playerHand);
             printf("The dealer's second card is a(n) %i, they have %i.\n", dealerCard2, dealerHand);
-            while(dealerHand < 17){
-                int dCardDraw = (rand() % 9) + 1;
-                if(dAce != 1 && dCardDraw == 1){
-                    dCardDraw = 11;
-                    dAce = 1;
+            if (dealerHand <= playerHand){
+                while(dealerHand < 17){
+                    int dCardDraw = (rand() % 9) + 1;
+                    if(dAce != 1 && dCardDraw == 1){
+                        dCardDraw = 11;
+                        dAce = 1;
+                    }
+                        dealerHand += dCardDraw;
+                        printf("The dealer drew a(n) %i, they now have %i. \n", dCardDraw, dealerHand);         
+                    }
                 }
-
-                    dealerHand += dCardDraw;
-                    printf("The dealer drew a(n) %i, they now have %i. \n", dCardDraw, dealerHand);         
-            }
 
             if (dealerHand >= 17){
                 if(playerHand > dealerHand || dealerHand > 21){
